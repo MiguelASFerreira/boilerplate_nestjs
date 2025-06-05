@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import CreateProduct from 'domain/useCase/product/CreateProduct';
 import DeleteProduct from 'domain/useCase/product/DeleteProduct';
 import { InputCreateProduct } from 'domain/useCase/product/dto/CreateProduct.dto';
-import type { InputUpdateProduct } from 'domain/useCase/product/dto/UpdateProduct.dto';
+import { InputUpdateProduct } from 'domain/useCase/product/dto/UpdateProduct.dto';
 import GetProductById from 'domain/useCase/product/GetProductById';
 import UpdateProduct from 'domain/useCase/product/UpdateProduct';
 import { PrismaService } from 'infra/prisma.service';
