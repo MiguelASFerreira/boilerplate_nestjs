@@ -34,4 +34,24 @@ export default class BusinessRepositoryInPrisma implements BusinessRepository {
       result.products,
     );
   }
+
+  async UpdateBusiness(id: string, data: Business): Promise<Business> {
+    const result = await this.prismaService.business.update({
+      where: { id },
+      data: {
+        name: data.name,
+        description: data.description || '',
+      },
+      include: {
+        products: true,
+      },
+    });
+
+    return new Business(
+      result.id,
+      result.name,
+      result.description || '',
+      result.products,
+    );
+  }
 }

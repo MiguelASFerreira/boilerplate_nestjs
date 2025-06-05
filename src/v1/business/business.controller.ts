@@ -6,9 +6,10 @@ import {
   HttpStatus,
   Param,
   Post,
+  Put,
 } from '@nestjs/common';
 import { BusinessService } from './business.service';
-import { CreateBusinessBody } from './dto/business.dto';
+import { CreateBusinessBody, UpdateBusinessBody } from './dto/business.dto';
 
 @Controller('business')
 export class BusinessController {
@@ -27,6 +28,18 @@ export class BusinessController {
   async CreateBusiness(@Body() data: CreateBusinessBody) {
     try {
       return await this.businessService.createBusiness(data);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Put(':businessId')
+  async UpdateBusiness(
+    @Param('businessId') businessId: string,
+    @Body() data: UpdateBusinessBody,
+  ) {
+    try {
+      return await this.businessService.updateBusiness(businessId, data);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
