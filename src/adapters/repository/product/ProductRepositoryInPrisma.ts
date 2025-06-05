@@ -22,4 +22,21 @@ export default class ProductRepositoryInPrisma implements ProductRepository {
       result.businessId,
     );
   }
+
+  async GetProductById(id: string): Promise<Product | null> {
+    const result = await this.prismaService.product.findUnique({
+      where: { id },
+    });
+
+    if (!result) {
+      return null;
+    }
+
+    return new Product(
+      result.name,
+      result.description,
+      result.price,
+      result.businessId,
+    );
+  }
 }
