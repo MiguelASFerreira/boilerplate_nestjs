@@ -16,6 +16,7 @@ export default class ProductRepositoryInPrisma implements ProductRepository {
     });
 
     return new Product(
+      result.id,
       result.name,
       result.description,
       result.price,
@@ -33,6 +34,27 @@ export default class ProductRepositoryInPrisma implements ProductRepository {
     }
 
     return new Product(
+      result.id,
+      result.name,
+      result.description,
+      result.price,
+      result.businessId,
+    );
+  }
+
+  async UpdateProduct(id: string, data: Product): Promise<Product> {
+    const result = await this.prismaService.product.update({
+      where: { id },
+      data: {
+        name: data.name,
+        description: data.description || '',
+        price: data.price,
+        businessId: data.businessId,
+      },
+    });
+
+    return new Product(
+      result.id,
       result.name,
       result.description,
       result.price,
