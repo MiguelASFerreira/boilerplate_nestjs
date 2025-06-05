@@ -15,4 +15,23 @@ export default class BusinessRepositoryInPrisma implements BusinessRepository {
 
     return new Business(result.id, result.name, result.description || '');
   }
+
+  async GetBusinessById(id: string): Promise<Business | null> {
+    const result = await this.prismaService.business.findUnique({
+      where: { id },
+      include: {
+        products: true,
+      },
+    });
+
+    if (!result) {
+      return null;
+    }
+    return new Business(
+      result.id,
+      result.name,
+      result.description || '',
+      result.products,
+    );
+  }
 }
