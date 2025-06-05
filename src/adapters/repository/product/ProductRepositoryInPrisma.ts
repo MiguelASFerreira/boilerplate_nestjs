@@ -1,5 +1,5 @@
-import Product from 'domain/entity/product/Product';
-import ProductRepository from 'domain/entity/product/ProductRepository';
+import Product from 'domain/entity/Product/Product';
+import ProductRepository from 'domain/entity/Product/ProductRepository';
 import { PrismaService } from 'infra/prisma.service';
 
 export default class ProductRepositoryInPrisma implements ProductRepository {

@@ -1,6 +1,6 @@
-import ProductRepository from 'domain/entity/product/ProductRepository';
+import ProductRepository from 'domain/entity/Product/ProductRepository';
 import { InputCreateProduct } from './dto/CreateProduct.dto';
-import Product from 'domain/entity/product/Product';
+import Product from 'domain/entity/Product/Product';
 
 export default class CreateProduct {
   constructor(private readonly productRepository: ProductRepository) {}

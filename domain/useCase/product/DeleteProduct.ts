@@ -1,4 +1,4 @@
-import ProductRepository from 'domain/entity/product/ProductRepository';
+import ProductRepository from 'domain/entity/Product/ProductRepository';
 
 export default class DeleteProduct {
   constructor(private readonly productRepository: ProductRepository) {}
