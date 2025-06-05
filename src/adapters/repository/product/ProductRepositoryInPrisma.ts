@@ -61,4 +61,10 @@ export default class ProductRepositoryInPrisma implements ProductRepository {
       result.businessId,
     );
   }
+
+  async DeleteProduct(id: string): Promise<void> {
+    await this.prismaService.product.delete({
+      where: { id },
+    });
+  }
 }

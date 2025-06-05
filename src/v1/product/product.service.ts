@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import CreateProduct from 'domain/useCase/product/CreateProduct';
+import DeleteProduct from 'domain/useCase/product/DeleteProduct';
 import { InputCreateProduct } from 'domain/useCase/product/dto/CreateProduct.dto';
 import type { InputUpdateProduct } from 'domain/useCase/product/dto/UpdateProduct.dto';
 import GetProductById from 'domain/useCase/product/GetProductById';
@@ -33,5 +34,13 @@ export class ProductService {
     const useCase = new UpdateProduct(productRepository);
 
     return await useCase.execute(id, data);
+  }
+
+  async deleteProduct(id: string) {
+    const productRepository = new ProductRepositoryInPrisma(this.prismaService);
+
+    const useCase = new DeleteProduct(productRepository);
+
+    return await useCase.execute(id);
   }
 }
