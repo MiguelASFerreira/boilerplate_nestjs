@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import CreateBusiness from 'domain/useCase/business/CreateBusiness';
+import DeleteBusiness from 'domain/useCase/business/DeleteBusiness';
 import { InputCreateBusiness } from 'domain/useCase/business/dto/CreateBusiness.dto';
 import { InputUpdateBusiness } from 'domain/useCase/business/dto/UpdateBusiness.dto';
 import GetBusinessById from 'domain/useCase/business/GetBusinessById';
@@ -39,5 +40,15 @@ export class BusinessService {
     const useCase = new UpdateBusiness(businessRepository);
 
     return await useCase.execute(id, data);
+  }
+
+  async deleteBusiness(id: string) {
+    const businessRepository = new BusinessRepositoryInPrisma(
+      this.prismaService,
+    );
+
+    const useCase = new DeleteBusiness(businessRepository);
+
+    return await useCase.execute(id);
   }
 }

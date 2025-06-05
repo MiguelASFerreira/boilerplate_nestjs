@@ -54,4 +54,10 @@ export default class BusinessRepositoryInPrisma implements BusinessRepository {
       result.products,
     );
   }
+
+  async DeleteBusiness(id: string): Promise<void> {
+    await this.prismaService.business.delete({
+      where: { id },
+    });
+  }
 }

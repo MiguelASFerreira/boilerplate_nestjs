@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpException,
   HttpStatus,
@@ -42,6 +43,15 @@ export class BusinessController {
       return await this.businessService.updateBusiness(businessId, data);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Delete(':businessId')
+  async DeleteBusiness(@Param('businessId') businessId: string) {
+    try {
+      return await this.businessService.deleteBusiness(businessId);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 }
